@@ -1,0 +1,9 @@
+1 created both web and console application. If you want to run web application then set that 
+  project (project name is Calculator.Web) as StartUpProject and if you want console application then 
+  make Calculator.ConsoleApp project as StartUpProject 
+
+2 Test case also written in Calculator.Test
+
+3 I have implemented api for currency rate only in console application not in web 
+
+   
