@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Accounts";
+}
+<div>
+    <select id="IdOfSelection">
+        <option value="1">Addition</option>
+        <option value="2">Subtraction</option>
+        <option value="3">Division</option>
+        <option value="4">Multiplication</option>
+    </select>
+
+    <input type="text" id="IdForValueOne" />
+    <input type="text" id="IdForValueTwo" />
+    <button id="IdCalculate">Calculate</button>
+    <br />
+    <p id="IdForResultParagrah">Reult is <span id="IdForSpanResult"></span></p>
+</div>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
+    $(function () {
+        $("#IdForResultParagrah").hide();
+        $("#IdCalculate").on("click", function () {
+            debugger
+            $("#IdForResultParagrah").show();
+            $("#IdForSpanResult").html("");
+            var ValueOneTextBox=$("#IdForValueOne").val().trim();
+            var ValueTwoTextBox=$("#IdForValueTwo").val().trim();
+            var UserEnterdDetails =
+            {
+                OperationSelected: $("#IdOfSelection").val().trim(),
+                ValueOne: ValueOneTextBox,
+                ValueTwo: ValueTwoTextBox
+            }
+            if (ValueOneTextBox != null && ValueTwoTextBox != null) {
+                debugger
+                $.ajax({
+                    contentType: "application/json",
+                    type: "post",
+                    dataType: 'json',
+                    data: JSON.stringify(UserEnterdDetails),
+                    url: "/Home/Operation",
+                    success: function (data, textStatus, jqXHR) {
+                        $("#IdForSpanResult").html(data.Value);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    }
+                });
+            }
+        })
+    })
+</script>
